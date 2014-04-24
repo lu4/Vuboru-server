@@ -11,13 +11,18 @@
     "express-session": "~1.0.2",
     "errorhandler": "~1.0.0",
     "compression": "~1.0.1",
-    "lodash": "~2.4.1",
-    "ejs": "~0.8.4"
+    "lodash": "^2.4.1",
+    "ejs": "~0.8.4",
+    "mongodb": "^1.4.2",
+    "q": "^1.0.1",
+    "moment": "^2.6.0",
+    "socket.io": "^0.9.16",
+    "foreach-extended": "^3.0.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-autoprefixer": "~0.4.0",
-    "grunt-bower-install": "~0.7.0",
+    "grunt-bower-install": "~1.4.0",
     "grunt-concurrent": "~0.4.1",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-coffee": "~0.7.0",

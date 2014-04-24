@@ -1,0 +1,75 @@
+<div ng-if="!operation">
+    <a ng-href="/citizens/create">Створити користувача</a>
+    <br><br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Дії</th>
+                <th>№ Пасспорта</th>
+                <th>Прізвище</th>
+                <th>Ім'я</th>
+                <th>По батькові</th>
+                <th>Редактор</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in items">
+                <td><a ng-href="/citizens/update/{{item.uuid}}">Редагувати</a></td>
+                <td>{{item.passportNumber}}</td>
+                <td>{{item.lastName}}</td>
+                <td>{{item.firstName}}</td>
+                <td>{{item.middleName}}</td>
+                <td>{{item.authoredBy.lastName}} {{item.authoredBy.firstName}} {{item.authoredBy.middleName}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div ng-if="operation === 'view' || operation === 'create' || operation === 'update'">
+    <form role="form">
+        <div class="form-group">
+            <label for="lastName">Прізвище</label>
+            <input ng-disabled="operation === 'view' || operation === 'delete'" type="text" class="form-control" id="lastName" placeholder="Прізвище" ng-model="item.lastName">
+        </div>
+
+        <div class="form-group">
+            <label for="firstName">Ім'я</label>
+            <input ng-disabled="operation === 'view' || operation === 'delete'" type="text" class="form-control" id="firstName" placeholder="Ім'я" ng-model="item.firstName">
+        </div>
+
+        <div class="form-group">
+            <label for="middleName">По батькові</label>
+            <input ng-disabled="operation === 'view' || operation === 'delete'" type="text" class="form-control" id="middleName" placeholder="По батькові" ng-model="item.middleName">
+        </div>
+
+        <div class="form-group">
+            <label for="birthDate">Дата народження</label>
+            <input ng-disabled="operation === 'view' || operation === 'delete'" datepicker-popup class="form-control" id="birthDate" placeholder="Дата народження" ng-model="item.birthDate">
+        </div>
+
+        <div class="form-group">
+            <label for="passportIssuedDate">Дата видачі пасспорту</label>
+            <input ng-disabled="operation === 'view' || operation === 'delete'" datepicker-popup class="form-control" id="passportIssuedDate" placeholder="Дата видачі пасспорту" ng-model="item.passportIssuedDate">
+        </div>
+
+        <div class="form-group">
+            <label for="passportNumber">Серія та номер пасспорту</label>
+            <input ng-disabled="operation === 'view' || operation === 'delete'" type="text" class="form-control" id="passportNumber" placeholder="Серія та номер пасспорту" ng-model="item.passportNumber">
+        </div>
+
+        <div class="form-group">
+            <label for="passportIssuedBy">Пасспорт виданий наступною установою</label>
+            <input ng-disabled="operation === 'view' || operation === 'delete'" type="text" class="form-control" id="passportIssuedBy" placeholder="Назва установи" ng-model="item.passportIssuedBy">
+        </div>
+
+        <div class="form-group">
+            <label for="publicKey">Публічний ключ</label>
+            <textarea ng-disabled="operation === 'view' || operation === 'delete'" class="form-control" id="publicKey" rows="7" placeholder="Публічний ключ" ng-model="item.publicKey" ng-model="item.publicKey" style="font-family:monospace;"></textarea>
+        </div>
+    </form>
+
+    <a class="btn btn-default pull-right" ng-href="/citizens/update/{{item.uuid}}" ng-if="operation === 'view'">Змінити</a>
+    <button class="btn btn-default pull-right" ng-click="store()" ng-if="operation === 'create'">Створити</button>
+    <button class="btn btn-default pull-right" ng-click="store()" ng-if="operation === 'update'">Зберегти</button>
+    <button class="btn btn-default pull-right" ng-click="store()" ng-if="operation === 'delete'">Видалити</button>
+</div>

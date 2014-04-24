@@ -1,0 +1,36 @@
+<div ng-if="!operation">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Дії</th>
+            <th>Зерно</th>
+            <th>Кандидат</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in items">
+            <td><a ng-href="/precincts/view/{{item.uuid}}">Переглянути</a></td>
+            <td>{{item.name}}</td>
+            <td>{{item.authoredBy.lastName}} {{item.authoredBy.firstName}} {{item.authoredBy.middleName}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div ng-if="operation">
+    <form role="form">
+        <div class="form-group">
+            <label for="name">Назва</label>
+            <input ng-disabled="operation === 'view' || operation === 'delete'" type="text" class="form-control" id="name" placeholder="Назва" ng-model="item.name">
+        </div>
+
+        <div class="form-group">
+            <label for="publicKey">Публічний ключ</label>
+            <textarea ng-disabled="operation === 'view' || operation === 'delete'" class="form-control" id="publicKey" rows="7" placeholder="Публічний ключ" ng-model="item.publicKey" style="font-family:monospace;"></textarea>
+        </div>
+
+        <button class="btn btn-default pull-right" ng-click="store()" ng-if="operation === 'create'">Створити</button>
+        <button class="btn btn-default pull-right" ng-click="store()" ng-if="operation === 'update'">Зберегти</button>
+        <button class="btn btn-default pull-right" ng-click="store()" ng-if="operation === 'delete'">Видалити</button>
+    </form>
+</div>
